@@ -1,58 +1,60 @@
 require("mason-lspconfig").setup()
 require("lsp-format").setup {}
 
-local lspf_on_attach = function(client)
+local lsp_on_attach = function(client, bufnr)
 	require("lsp-format").on_attach(client)
+	require("nvim-navic").attach(client, bufnr)
 end
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp = require 'lspconfig'
+
 lsp.pyright.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 lsp.rust_analyzer.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 lsp.clangd.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 lsp.cmake.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 lsp.cssls.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 lsp.docker_compose_language_service.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 lsp.gopls.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 lsp.jsonls.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 lsp.ltex.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 lsp.lua_ls.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 lsp.rust_analyzer.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 lsp.vimls.setup {
 	capabilities = cmp_capabilities,
-	on_attach = lspf_on_attach
+	on_attach = lsp_on_attach
 }
 
 -- Global mappings.

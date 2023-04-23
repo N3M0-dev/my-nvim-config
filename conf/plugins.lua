@@ -12,7 +12,12 @@ return require('packer').startup(function(use)
 	use({
 		"kylechui/nvim-surround",
 		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-		config = [[require('plugin_conf.surround_conf')]]
+		-- config = [[require('plugin_conf.surround_conf')]]
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end
 	})
 	use {
 		'numToStr/Comment.nvim',
@@ -36,6 +41,12 @@ return require('packer').startup(function(use)
 	}
 	use { 'anuvyklack/pretty-fold.nvim',
 		config = [[require('plugin_conf.pretty-fold_conf')]]
+	}
+	use {
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = [[require('plugin_conf.copilot_conf')]]
 	}
 	use { "williamboman/mason.nvim",
 		run = ":MasonUpdate", -- :MasonUpdate updates registry contents
@@ -63,7 +74,15 @@ return require('packer').startup(function(use)
 	use { "hrsh7th/cmp-path", after = "nvim-cmp" }
 	use { "hrsh7th/cmp-buffer", after = "nvim-cmp" }
 	use { "hrsh7th/cmp-omni", after = "nvim-cmp" }
-	use { "quangnguyen30192/cmp-nvim-ultisnips", after = { "nvim-cmp", "ultisnips" } }
+	use {
+		"zbirenbaum/copilot-cmp",
+		after = { "copilot.lua" },
+		config = function()
+			require("copilot_cmp").setup()
+		end
+	}
+	use { "quangnguyen30192/cmp-nvim-ultisnips", after = { "nvim-cmp", "ultisnips" }, config =
+	[[require('plugin_conf.cmp_ultisnips_conf')]] }
 	use { "neovim/nvim-lspconfig", after = "cmp-nvim-lsp", config = [[require('plugin_conf.lsp_conf')]] }
 	use { "nvim-telescope/telescope-symbols.nvim", after = "telescope.nvim" }
 	use {
@@ -75,8 +94,7 @@ return require('packer').startup(function(use)
 		event = "BufEnter",
 	}
 	-- Snippet engine and snippet template
-	use { "SirVer/ultisnips", event = "InsertEnter" }
-	use { "honza/vim-snippets", after = "ultisnips" }
+	use { "SirVer/ultisnips", event = "VimEnter" }
 
 	-- Automatic insertion and deletion of a pair of characters
 	use { "Raimondi/delimitMate", event = "InsertEnter" }
@@ -95,4 +113,9 @@ return require('packer').startup(function(use)
 	}
 	use "lukas-reineke/lsp-format.nvim"
 	use 'navarasu/onedark.nvim'
+	use {
+		"SmiteshP/nvim-navic",
+		requires = "neovim/nvim-lspconfig",
+		config = [[require('plugin_conf.navic_conf')]]
+	}
 end)
