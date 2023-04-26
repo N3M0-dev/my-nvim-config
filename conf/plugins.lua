@@ -9,6 +9,11 @@ return require('packer').startup(function(use)
 		end,
 		config = [[require('plugin_conf.treesitter_conf')]]
 	}
+	use {
+		"folke/which-key.nvim",
+		event = "VimEnter",
+		config = [[require('plugin_conf.which-key_conf')]],
+	}
 	use({
 		"kylechui/nvim-surround",
 		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -23,15 +28,16 @@ return require('packer').startup(function(use)
 		'numToStr/Comment.nvim',
 		config = [[require('plugin_conf.comment_conf')]]
 	}
-	use { 'ibhagwan/fzf-lua',
-		-- optional for icon support
-		requires = { 'nvim-tree/nvim-web-devicons' },
-		config = [[require('plugin_conf.fzf-lua_conf')]]
-	}
+	use 'nvim-tree/nvim-web-devicons'
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
 		-- or                            , branch = '0.1.x',
-		requires = { { 'nvim-lua/plenary.nvim' } },
+		requires = {
+			{ 'nvim-lua/popup.nvim',                      'LinArcX/telescope-env.nvim' },
+			{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+			{ 'nvim-telescope/telescope-ui-select.nvim' },
+			{ 'nvim-lua/plenary.nvim' },
+		},
 		config = [[require('plugin_conf.telescope_conf')]]
 	}
 	use {
@@ -72,6 +78,7 @@ return require('packer').startup(function(use)
 	-- nvim-cmp completion sources
 	use { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" }
 	use { "hrsh7th/cmp-path", after = "nvim-cmp" }
+	use { "hrsh7th/cmp-emoji", after = "nvim-cmp" }
 	use { "hrsh7th/cmp-buffer", after = "nvim-cmp" }
 	use { "hrsh7th/cmp-omni", after = "nvim-cmp" }
 	use {
@@ -107,10 +114,7 @@ return require('packer').startup(function(use)
 	use { "andymass/vim-matchup", event = "VimEnter" }
 	use { "tpope/vim-scriptease", cmd = { "Scriptnames", "Message", "Verbose" } }
 	use { "gelguy/wilder.nvim" }
-	use {
-		"folke/which-key.nvim",
-		event = "VimEnter",
-	}
+
 	use "lukas-reineke/lsp-format.nvim"
 	use 'navarasu/onedark.nvim'
 	use {
@@ -118,4 +122,22 @@ return require('packer').startup(function(use)
 		requires = "neovim/nvim-lspconfig",
 		config = [[require('plugin_conf.navic_conf')]]
 	}
+	use 'folke/neodev.nvim'
+	use { "jay-babu/mason-nvim-dap.nvim" }
+	use { 'mfussenegger/nvim-dap', after = { "nvim-lspconfig" }, config =
+	[[require('plugin_conf.dap_conf')]] }
+	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+	use {
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
+		config = [[require('plugin_conf.neo_tree_conf')]]
+	}
+	use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+		require("toggleterm").setup()
+	end }
 end)

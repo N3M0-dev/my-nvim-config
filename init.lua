@@ -1,7 +1,7 @@
 local conf_files = {
-	"global.vim",
 	"global.lua",
-	"plugins.lua"
+	"plugins.lua",
+	"global.vim"
 }
 
 -- Here only config files of filetype .vim will be in the list, ohters are in the lua/plugin_conf, called by plugins.lua
@@ -27,3 +27,4 @@ require('onedark').setup {
 	style = 'warmer'
 }
 require('onedark').load()
+vim.cmd("hi TabLineSel guibg = #767a82")
