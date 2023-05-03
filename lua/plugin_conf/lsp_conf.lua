@@ -1,10 +1,13 @@
 require("mason-lspconfig").setup()
-require("lsp-format").setup {}
+require "lsp-format".setup {
+	-- options here
+}
 
 local lsp_on_attach = function(client, bufnr)
 	require("lsp-format").on_attach(client)
 	require("nvim-navic").attach(client, bufnr)
 end
+
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp = require 'lspconfig'
 
