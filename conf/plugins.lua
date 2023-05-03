@@ -81,6 +81,7 @@ return require('packer').startup(function(use)
 	use { "hrsh7th/cmp-emoji", after = "nvim-cmp" }
 	use { "hrsh7th/cmp-buffer", after = "nvim-cmp" }
 	use { "hrsh7th/cmp-omni", after = "nvim-cmp" }
+	use { "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" }
 	use {
 		"zbirenbaum/copilot-cmp",
 		after = { "copilot.lua" },

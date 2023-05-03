@@ -135,7 +135,7 @@ dap.adapters.codelldb = {
 	port = "${port}",
 	executable = {
 		-- CHANGE THIS to your path!
-		command = '/bin/codelldb',
+		command = '/home/nemo/Downloads/codelldb/adapter/codelldb',
 		args = { "--port", "${port}" },
 		-- On windows you may have to uncomment this:
 		-- detached = false,
@@ -153,6 +153,7 @@ dap.configurations.cpp = {
 		stopOnEntry = false,
 	},
 }
+dap.configurations.c = dap.configurations.cpp
 
 dap.defaults.fallback.external_terminal = {
 	command = '/usr/bin/alacritty',
