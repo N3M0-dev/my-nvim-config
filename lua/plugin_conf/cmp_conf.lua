@@ -66,10 +66,9 @@ cmp.setup {
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 	},
 	sources = {
-		{ name = "copilot" },
-		{ name = "nvim_lsp" },               -- For nvim-lsp
-		{ name = "ultisnips" },              -- For ultisnips user.
-		{ name = "path" },                   -- for path completion
+		{ name = "nvim_lsp" },                             -- For nvim-lsp
+		{ name = "ultisnips" },                            -- For ultisnips user.
+		{ name = "path" },                                 -- for path completion
 		{ name = "buffer",                 keyword_length = 2 }, -- for buffer word completion
 		{ name = "emoji",                  insert = true }, -- emoji completion
 		{ name = "nvim_lsp_signature_help" }

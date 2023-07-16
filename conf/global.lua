@@ -1,0 +1,7 @@
+vim.keymap.set('n', '<C-q>', function()
+	vim.cmd("q")
+	require('dapui').close()
+end)
+vim.keymap.set('n', 'pp', function()
+	vim.cmd("set clipboard+=unnamedplus")
+end)

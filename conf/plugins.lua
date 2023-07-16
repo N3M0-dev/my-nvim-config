@@ -141,4 +141,6 @@ return require('packer').startup(function(use)
 	use { "akinsho/toggleterm.nvim", tag = '*', config = function()
 		require("toggleterm").setup()
 	end }
+	use 'h-hg/fcitx.nvim'
+	use { 'kaarmu/typst.vim', ft = { 'typst' } }
 end)

@@ -14,7 +14,7 @@ syntax enable
 let mapleader = " "
 map <space> <nop>
 " use jj to escape insert mode.
-let g:better_escape_shortcut = 'jk'
+let g:better_escape_shortcut = 'ht'
 " set time interval to 200 ms
 let g:better_escape_interval = 150
 let g:tex_flavor='latex'
@@ -25,6 +25,22 @@ let g:tex_conceal='abdmg'
 hi Conceal ctermbg=none
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
+let g:vimtex_compiler_latexmk_engines = {'_':'-xelatex'}
+" let g:vimtex_compiler_latexrun_engines ={'_':'xelatex'}
+" let g:vimtex_compiler_latexmk = {
+"         \ 'build_dir' : '',
+"         \ 'callback' : 1,
+"         \ 'continuous' : 1,
+"         \ 'executable' : 'latexmk',
+"         \ 'hooks' : [],
+"         \ 'options' : [
+"         \   '-verbose',
+"         \   '-xelatex',
+" 	\   '-file-line-error',
+"         \   '-synctex=1',
+"         \   '-interaction=nonstopmode',
+"         \ ],
+"         \}
 
 nmap <Leader>w :w<cr>
-nmap <C-q> :q<cr>
+noremap s <right>

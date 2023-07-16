@@ -15,29 +15,44 @@ endglobal
 snippet template "Basic template" b
 \documentclass[a4paper]{article}
 
-\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
-\usepackage[dutch]{babel}
+\usepackage{listing}
 \usepackage{amsmath, amssymb}
 
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{proof}{Proof}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{note}{Note}
 
-% figure support
-\usepackage{import}
-\usepackage{xifthen}
-\pdfminorversion=7
-\usepackage{pdfpages}
-\usepackage{transparent}
-\newcommand{\incfig}[1]{%
-	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
-}
-
-\pdfsuppresswarningpagegroup=1
-
+\title{ $1 }
+\author{ ${2:N3M0} }
+\date{ $3 }
 \begin{document}
-	$0
+\maketitle
+	$4
 \end{document}
+endsnippet
+
+snippet today "Date"
+`date +%F`
+endsnippet
+
+snippet cfb "Center framebox" b
+\begin{center}
+\framebox[\linewidth]{$1}\par
+\end{center}
+$0
+endsnippet
+
+snippet box "Box"
+`!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+│ $1 │
+`!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+$0
 endsnippet
 
 snippet beg "begin{} / end{}" bA
@@ -429,6 +444,7 @@ snippet xx "cross" iA
 \times 
 endsnippet
 
+context "math()"
 priority 100
 snippet ** "cdot" iA
 \cdot 

@@ -7,7 +7,7 @@ local lsp_on_attach = function(client, bufnr)
 end
 local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp = require 'lspconfig'
-
+vim.lsp.set_log_level("debug")
 lsp.pyright.setup {
 	capabilities = cmp_capabilities,
 	on_attach = lsp_on_attach
@@ -41,8 +41,11 @@ lsp.jsonls.setup {
 	on_attach = lsp_on_attach
 }
 lsp.ltex.setup {
-	capabilities = cmp_capabilities,
-	on_attach = lsp_on_attach
+	root_dir = function()
+		return vim.fn.getcwd()
+	end
+	-- capabilities = cmp_capabilities,
+	-- on_attach = lsp_on_attach
 }
 lsp.lua_ls.setup {
 	capabilities = cmp_capabilities,
@@ -56,6 +59,16 @@ lsp.vimls.setup {
 	capabilities = cmp_capabilities,
 	on_attach = lsp_on_attach
 }
+lsp.typst_lsp.setup {
+	--[[ settings = {
+		exportPdf = "onType" -- Choose onType, onSave or never.
+		-- serverPath = "" -- Normally, there is no need to uncomment it.
+	}, ]]
+	capabilities = cmp_capabilities,
+	on_attach = lsp_on_attach
+
+}
+
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
