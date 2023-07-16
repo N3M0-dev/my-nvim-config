@@ -77,7 +77,11 @@ dapui.setup({
 	}
 }
 )
-vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
+vim.keymap.set('n', '<F5>', function()
+	require('dapui').close()
+	require('dapui').open()
+	require('dap').continue()
+end)
 vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
 vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
 vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
@@ -135,7 +139,7 @@ dap.adapters.codelldb = {
 	port = "${port}",
 	executable = {
 		-- CHANGE THIS to your path!
-		command = '/home/nemo/Downloads/codelldb/adapter/codelldb',
+		command = '/home/n3m0/Utils/codelldb/adapter/codelldb',
 		args = { "--port", "${port}" },
 		-- On windows you may have to uncomment this:
 		-- detached = false,
@@ -159,3 +163,8 @@ dap.defaults.fallback.external_terminal = {
 	command = '/usr/bin/alacritty',
 	args = { '--hold', '-e' },
 }
+
+vim.keymap.set('n', '<C-q>', function()
+	require('dapui').close()
+	vim.cmd('q')
+end)
